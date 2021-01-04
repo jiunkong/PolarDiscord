@@ -1,0 +1,44 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.21'
+}
+
+group 'dev.bukgeuk.polardiscord'
+version '1.0'
+
+repositories {
+    mavenCentral()
+    jcenter()
+
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://bintray.com/dv8fromtheworld/maven/JDA/' }
+    maven { url = 'https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12' }
+    maven { url = 'https://mvnrepository.com/artifact/net.sf.trove4j/trove4j' }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.12.+"
+
+    compileOnly 'org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT'
+    compileOnly 'org.slf4j:slf4j-log4j12:1.7.30'
+    compileOnly 'net.sf.trove4j:trove4j:3.0.3'
+    compileOnly ('net.dv8tion:JDA:4.2.0_225') {
+        exclude module: 'opus-java'
+    }
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+
+    jar {
+        from {
+            configurations.compileClasspath.collect {
+                it.isDirectory() ? it : zipTree(it)
+            }
+        }
+    }
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}

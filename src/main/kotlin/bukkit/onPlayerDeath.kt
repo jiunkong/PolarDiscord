@@ -14,7 +14,7 @@ class onPlayerDeath: Listener {
         if (e.entityType != EntityType.PLAYER) return
         val embed = EmbedBuilder()
         embed.setColor(Color.RED)
-        embed.setAuthor("e.deathMessage", null, "https://crafatar.com/avatars/${e.entity.player?.uniqueId}")
+        embed.setAuthor(e.deathMessage, null, "https://crafatar.com/avatars/${e.entity.player?.uniqueId}")
         PolarDiscord.bot.getGuildById(PolarDiscord.serverID)?.getTextChannelById(PolarDiscord.eventChannelID)?.sendMessage(embed.build())?.queue()
     }
 }

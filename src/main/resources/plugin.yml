@@ -1,0 +1,30 @@
+name: PolarDiscord
+main: dev.bukgeuk.polardiscord.PolarDiscord
+author: Bukgeuk_
+description: A Minecraft Plugin For Linking to Discord
+version: 2.0.0
+api-version: 1.17
+
+commands:
+  link:
+    description: Link to discord account
+    usage: "사용법: /<command>"
+    permission: polardiscord.link
+    permission-message: "You do not have permission!"
+  discord:
+    description: Show player's discord account
+    usage: "사용법: /<command> <player>"
+    permission: polardiscord.discord
+    permission-message: "You do not have permission!"
+
+permissions:
+  polardiscord.*:
+    description: Allows all PolarDiscord command
+    default: op
+    children:
+      polardiscord.link: true
+      polardiscord.discord: true
+  polardiscord.link:
+    default: true
+  polardiscord.discord:
+    default: true
